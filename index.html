@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubble Chat Admin — App & Session Management</title>
+    <meta name="description" content="Admin panel for Quatmo Bubble Chat — manage apps, sessions, and users for your embeddable AI chatbot." />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50:  "#eff6ff",
+                100: "#dbeafe",
+                200: "#bfdbfe",
+                300: "#93c5fd",
+                400: "#60a5fa",
+                500: "#3b82f6",
+                600: "#2563eb",
+                700: "#1d4ed8",
+                800: "#1e40af",
+                900: "#1e3a8a",
+                950: "#172554",
+              },
+            },
+            fontFamily: {
+              sans: ['"Inter"', "sans-serif"],
+              mono: ['"JetBrains Mono"', "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- XLSX for file import -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body { font-family: "Inter", sans-serif; }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 5px; height: 5px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 6px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.22); }
+
+      /* Glass card */
+      .glass {
+        background: rgba(255,255,255,0.88);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(226,232,240,0.75);
+        box-shadow: 0 8px 32px -8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.03);
+      }
+
+      /* Active nav tab */
+      .tab-active {
+        background: #2563eb;
+        color: #fff !important;
+        box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+      }
+
+      /* Focus ring */
+      .ring-brand:focus {
+        outline: none;
+        border-color: rgba(59,130,246,0.6);
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+      }
+
+      /* Slot tag */
+      .slot-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        font-size: 11px;
+        font-weight: 600;
+        font-family: "JetBrains Mono", monospace;
+        background: #eff6ff;
+        color: #2563eb;
+        border: 1px solid #bfdbfe;
+      }
+
+      /* Fade-in animation */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .fade-in { animation: fadeIn 0.18s ease both; }
+
+      /* Mono cell */
+      .mono { font-family: "JetBrains Mono", monospace; }
+
+      /* Code textarea */
+      .code-area {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12.5px;
+        line-height: 1.6;
+        resize: vertical;
+        tab-size: 2;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 text-slate-800 pb-16">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
